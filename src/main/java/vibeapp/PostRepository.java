@@ -36,4 +36,8 @@ public class PostRepository {
         post.setNo(nextNo++);
         posts.add(post);
     }
+
+    public void deleteByNo(Long no) {
+        posts.removeIf(post -> post.getNo().equals(no));
+    }
 }

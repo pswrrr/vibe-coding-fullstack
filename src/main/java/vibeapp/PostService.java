@@ -47,4 +47,8 @@ public class PostService {
         post.setContent(content);
         post.setUpdatedAt(java.time.LocalDateTime.now());
     }
+
+    public void deletePost(Long no) {
+        postRepository.deleteByNo(no);
+    }
 }
