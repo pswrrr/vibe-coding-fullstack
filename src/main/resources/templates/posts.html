@@ -102,7 +102,7 @@
                     <button
                         class="px-5 py-2 rounded-full bg-transparent text-sm font-bold text-text-sub hover:bg-gray-100">자유게시판</button>
                 </div>
-                <button
+                <button onclick="location.href='/posts/new'"
                     class="bg-accent text-white px-6 py-2.5 rounded-full font-bold hover:bg-blue-600 transition-all text-sm">글쓰기</button>
             </div>
 
@@ -133,14 +133,28 @@
                 </table>
             </div>
 
-            <!-- Pagination (Placeholder) -->
-            <div class="mt-12 flex justify-center gap-2">
-                <button
-                    class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 text-sm font-bold bg-black text-white">1</button>
-                <button
-                    class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 text-sm font-bold hover:bg-gray-50">2</button>
-                <button
-                    class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 text-sm font-bold hover:bg-gray-50">3</button>
+            <!-- Pagination -->
+            <div class="mt-12 flex justify-center gap-2" th:if="${totalPages > 0}">
+                <!-- Previous Button -->
+                <button th:if="${currentPage > 1}" th:onclick="|location.href='/posts?page=' + ${currentPage - 1}|"
+                    class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 text-sm font-bold hover:bg-gray-50">
+                    <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+                </button>
+
+                <!-- Page Numbers -->
+                <button th:each="pageNum : ${#numbers.sequence(1, totalPages)}"
+                    th:onclick="|location.href='/posts?page=' + ${pageNum}|" th:text="${pageNum}"
+                    th:classappend="${pageNum == currentPage} ? 'bg-black text-white' : 'hover:bg-gray-50'"
+                    class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 text-sm font-bold transition-colors">
+                    1
+                </button>
+
+                <!-- Next Button -->
+                <button th:if="${currentPage < totalPages}"
+                    th:onclick="|location.href='/posts?page=' + ${currentPage + 1}|"
+                    class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 text-sm font-bold hover:bg-gray-50">
+                    <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+                </button>
             </div>
         </div>
     </main>
