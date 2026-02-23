@@ -8,6 +8,7 @@ import java.util.List;
 @Repository
 public class PostRepository {
     private final List<Post> posts = new ArrayList<>();
+    private Long nextNo = 11L;
 
     public PostRepository() {
         // Initialize with 10 dummy data items
@@ -29,5 +30,10 @@ public class PostRepository {
         return posts.stream()
                 .filter(post -> post.getNo().equals(no))
                 .findFirst();
+    }
+
+    public void save(Post post) {
+        post.setNo(nextNo++);
+        posts.add(post);
     }
 }

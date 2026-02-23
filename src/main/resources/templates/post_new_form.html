@@ -85,7 +85,7 @@
                 <p class="text-text-sub font-medium">당신의 새로운 아이디어를 바이브 코딩 커뮤니티에 공유해 보세요.</p>
             </header>
 
-            <form onsubmit="alert('새 게시글 등록'); return false;" class="space-y-10">
+            <form action="/posts/add" method="post" class="space-y-10">
                 <div>
                     <label class="input-label" for="title">제목</label>
                     <input class="input-field" id="title" name="title" placeholder="제목을 입력하세요" required type="text" />
