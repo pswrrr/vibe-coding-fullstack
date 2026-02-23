@@ -12,7 +12,9 @@ public class PostService {
     }
 
     public List<Post> getAllPosts() {
-        return postRepository.findAll();
+        return postRepository.findAll().stream()
+                .sorted((p1, p2) -> p2.getCreatedAt().compareTo(p1.getCreatedAt()))
+                .toList();
     }
 
     public Post getPostByNo(Long no) {
