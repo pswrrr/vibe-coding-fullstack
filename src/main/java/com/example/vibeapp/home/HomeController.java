@@ -1,4 +1,4 @@
-package vibeapp;
+package com.example.vibeapp.home;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
