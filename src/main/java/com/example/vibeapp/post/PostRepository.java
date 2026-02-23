@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class PostRepository {
@@ -26,7 +27,7 @@ public class PostRepository {
         return new ArrayList<>(posts);
     }
 
-    public java.util.Optional<Post> findByNo(Long no) {
+    public Optional<Post> findByNo(Long no) {
         return posts.stream()
                 .filter(post -> post.getNo().equals(no))
                 .findFirst();

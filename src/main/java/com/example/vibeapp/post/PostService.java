@@ -2,6 +2,8 @@ package com.example.vibeapp.post;
 
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.time.LocalDateTime;
+import java.util.Collections;
 
 @Service
 public class PostService {
@@ -23,7 +25,7 @@ public class PostService {
         int end = Math.min(start + size, allPosts.size());
 
         if (start > allPosts.size()) {
-            return java.util.Collections.emptyList();
+            return Collections.emptyList();
         }
 
         return allPosts.subList(start, end);
@@ -40,7 +42,7 @@ public class PostService {
 
         // 조회수 증가
         post.setViews(post.getViews() + 1);
-        post.setUpdatedAt(java.time.LocalDateTime.now());
+        post.setUpdatedAt(LocalDateTime.now());
 
         return post;
     }
@@ -49,7 +51,7 @@ public class PostService {
         Post post = new Post();
         post.setTitle(title);
         post.setContent(content);
-        post.setCreatedAt(java.time.LocalDateTime.now());
+        post.setCreatedAt(LocalDateTime.now());
         post.setUpdatedAt(null);
         post.setViews(0);
 
@@ -62,7 +64,7 @@ public class PostService {
 
         post.setTitle(title);
         post.setContent(content);
-        post.setUpdatedAt(java.time.LocalDateTime.now());
+        post.setUpdatedAt(LocalDateTime.now());
     }
 
     public void deletePost(Long no) {
