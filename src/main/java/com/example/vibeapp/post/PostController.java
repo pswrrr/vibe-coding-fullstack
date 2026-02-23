@@ -17,7 +17,7 @@ public class PostController {
     }
 
     @GetMapping("/posts")
-    public String list(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+    public String getPostList(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
         int pageSize = 5;
         List<Post> posts = postService.getPostsByPage(page, pageSize);
         int totalPages = postService.getTotalPages(pageSize);
@@ -30,39 +30,39 @@ public class PostController {
     }
 
     @GetMapping("/posts/{no}")
-    public String detail(@PathVariable("no") Long no, Model model) {
+    public String getPostDetail(@PathVariable("no") Long no, Model model) {
         Post post = postService.getPostByNo(no);
         model.addAttribute("post", post);
         return "post/post_detail";
     }
 
     @GetMapping("/posts/new")
-    public String newForm() {
+    public String getPostNewForm() {
         return "post/post_new_form";
     }
 
     @PostMapping("/posts/add")
-    public String add(@RequestParam("title") String title, @RequestParam("content") String content) {
+    public String registerPost(@RequestParam("title") String title, @RequestParam("content") String content) {
         postService.addPost(title, content);
         return "redirect:/posts";
     }
 
     @GetMapping("/posts/{no}/edit")
-    public String editForm(@PathVariable("no") Long no, Model model) {
+    public String getPostEditForm(@PathVariable("no") Long no, Model model) {
         Post post = postService.getPostByNo(no);
         model.addAttribute("post", post);
         return "post/post_edit_form";
     }
 
     @PostMapping("/posts/{no}/save")
-    public String update(@PathVariable("no") Long no, @RequestParam("title") String title,
+    public String modifyPost(@PathVariable("no") Long no, @RequestParam("title") String title,
             @RequestParam("content") String content) {
         postService.updatePost(no, title, content);
         return "redirect:/posts/" + no;
     }
 
     @GetMapping("/posts/{no}/delete")
-    public String delete(@PathVariable("no") Long no) {
+    public String removePost(@PathVariable("no") Long no) {
         postService.deletePost(no);
         return "redirect:/posts";
     }
