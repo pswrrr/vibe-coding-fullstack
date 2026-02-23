@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title th:text="${post.title} + ' | 바이브 코딩'">게시글 상세 | 바이브 코딩</title>
+    <title>게시글 수정 | 바이브 코딩</title>
     <!-- Tailwind CSS & Google Fonts & Bootstrap 5 -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
@@ -48,11 +48,14 @@
         .footer-link {
             @apply text-[13px] text-[#666] hover:text-[#000] transition-colors;
         }
-        .content-area {
-            @apply text-[17px] leading-relaxed text-text-main py-10 min-h-[300px] border-b border-gray-100;
+        .input-field {
+            @apply w-full border-b border-gray-200 py-3 focus:border-accent focus:outline-none transition-all text-[16px] placeholder:text-gray-300;
         }
-        .meta-item {
-            @apply flex items-center gap-1.5 text-sm text-text-sub;
+        .input-field[readonly] {
+            @apply bg-transparent text-gray-500 cursor-not-allowed border-none pt-1 pb-1;
+        }
+        .input-label {
+            @apply text-[13px] font-bold text-text-sub uppercase tracking-wider mb-2 block;
         }
     </style>
 </head>
@@ -66,10 +69,8 @@
                     <span class="text-xl font-black tracking-tighter">VIBE CODING</span>
                 </div>
                 <nav class="hidden lg:flex items-center gap-8">
-                    <a class="nav-link" href="#">쇼케이스</a>
+                    <a class="nav-link" href="/">홈</a>
                     <a class="nav-link" href="/posts">게시판</a>
-                    <a class="nav-link" href="#">디자인 스니펫</a>
-                    <a class="nav-link" href="#">워크플로우</a>
                 </nav>
             </div>
             <div class="flex items-center gap-6">
@@ -81,69 +82,62 @@
     </header>
 
     <main class="pt-32 pb-20">
-        <article class="max-w-[900px] mx-auto px-6">
-            <!-- Breadcrumb Navigation -->
-            <div class="flex items-center gap-2 text-sm text-text-sub mb-8 font-medium">
-                <a href="/" class="hover:text-black">Home</a>
-                <span class="material-symbols-outlined text-xs">chevron_right</span>
-                <a href="/posts" class="hover:text-black">게시판</a>
-                <span class="material-symbols-outlined text-xs">chevron_right</span>
-                <span class="text-black">상세조회</span>
-            </div>
-
-            <!-- Post Header -->
-            <header class="mb-10 pb-10 border-b border-gray-100">
-                <div class="flex items-center gap-2 mb-4">
-                    <span class="bg-gray-100 text-text-sub text-[11px] font-bold px-2 py-0.5 rounded"
-                        th:text="'No.' + ${post.no}">No.1</span>
-                </div>
-                <h1 class="text-[32px] md:text-[42px] font-bold tracking-tight leading-tight mb-6"
-                    th:text="${post.title}">게시글 제목이 표시되는 영역입니다.</h1>
-
-                <div class="flex flex-wrap items-center justify-between gap-4">
-                    <div class="flex items-center gap-6">
-                        <div class="meta-item">
-                            <span class="material-symbols-outlined text-[18px]">person</span>
-                            <span class="font-medium">Vibe Admin</span>
-                        </div>
-                        <div class="meta-item">
-                            <span class="material-symbols-outlined text-[18px]">calendar_today</span>
-                            <span th:text="${#temporals.format(post.createdAt, 'yyyy.MM.dd HH:mm')}">2024.02.23
-                                14:30</span>
-                        </div>
-                        <div class="meta-item">
-                            <span class="material-symbols-outlined text-[18px]">visibility</span>
-                            <span th:text="${post.views}">123</span>
-                        </div>
-                    </div>
-                </div>
+        <div class="max-w-[800px] mx-auto px-6">
+            <header class="mb-12">
+                <h1 class="text-[32px] font-bold tracking-tight mb-2">게시글 수정</h1>
+                <p class="text-text-sub font-medium">작성된 내용을 수정하고 업데이트하세요.</p>
             </header>
 
-            <!-- Post Content -->
-            <div class="content-area break-keep" th:text="${post.content}">
-                여기에 게시글의 상세 내용이 출력됩니다. ArrayList 기반의 메모리 저장소에 저장된 데이터가 Thymeleaf를 통해 렌더링 됩니다.
-            </div>
+            <form th:action="@{/posts/{no}/save(no=${post.no})}" method="post" class="space-y-10">
+                <div class="grid grid-cols-2 gap-10">
+                    <div>
+                        <label class="input-label">글 번호</label>
+                        <input class="input-field" th:value="${post.no}" readonly type="text" />
+                    </div>
+                    <div>
+                        <label class="input-label">조회수</label>
+                        <input class="input-field" th:value="${post.views}" readonly type="text" />
+                    </div>
+                </div>
 
-            <!-- Bottom Actions -->
-            <footer class="mt-12 flex justify-between items-center">
-                <div class="flex gap-2">
-                    <a th:href="@{/posts/{no}/edit(no=${post.no})}"
-                        class="px-8 py-3 rounded-full border border-black text-black text-sm font-bold hover:bg-stone-50 transition-all flex items-center gap-2">
-                        <span class="material-symbols-outlined text-[20px]">edit</span>
-                        수정
-                    </a>
-                    <a href="/posts"
-                        class="px-8 py-3 rounded-full bg-black text-white text-sm font-bold hover:bg-stone-800 transition-all flex items-center gap-2">
-                        <span class="material-symbols-outlined text-[18px]">list</span>
-                        목록으로
-                    </a>
+                <div class="grid grid-cols-2 gap-10">
+                    <div>
+                        <label class="input-label">생성일</label>
+                        <input class="input-field" th:value="${#temporals.format(post.createdAt, 'yyyy-MM-dd')}"
+                            readonly type="text" />
+                    </div>
+                    <div>
+                        <label class="input-label">수정일</label>
+                        <input class="input-field"
+                            th:value="${post.updatedAt != null ? #temporals.format(post.updatedAt, 'yyyy-MM-dd') : ''}"
+                            readonly type="text" />
+                    </div>
                 </div>
-                <div class="flex gap-2">
-                    <button
-                        class="bg-stone-100 text-red-600 px-6 py-3 rounded-full font-bold hover:bg-stone-200 transition-all text-sm">삭제</button>
+
+                <div>
+                    <label class="input-label" for="title">제목</label>
+                    <input class="input-field font-bold text-xl" id="title" name="title" th:value="${post.title}"
+                        placeholder="제목을 입력하세요" required type="text" />
                 </div>
-            </footer>
-        </article>
+
+                <div>
+                    <label class="input-label" for="content">내용</label>
+                    <textarea class="input-field min-h-[300px] resize-none" id="content" name="content"
+                        th:text="${post.content}" placeholder="내용을 입력하세요" required></textarea>
+                </div>
+
+                <div class="pt-10 flex gap-4">
+                    <button type="submit"
+                        class="flex-1 bg-black text-white py-4 rounded-full font-bold hover:bg-stone-800 transition-all">
+                        저장하기
+                    </button>
+                    <button type="button" th:onclick="|location.href='/posts/' + ${post.no}|"
+                        class="flex-1 border border-black text-black py-4 rounded-full font-bold hover:bg-stone-50 transition-all">
+                        취소
+                    </button>
+                </div>
+            </form>
+        </div>
     </main>
 
     <!-- Footer -->

@@ -36,4 +36,13 @@ public class PostService {
 
         postRepository.save(post);
     }
+
+    public void updatePost(Long no, String title, String content) {
+        Post post = postRepository.findByNo(no)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다. No: " + no));
+
+        post.setTitle(title);
+        post.setContent(content);
+        post.setUpdatedAt(java.time.LocalDateTime.now());
+    }
 }
