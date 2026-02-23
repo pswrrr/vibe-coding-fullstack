@@ -45,9 +45,19 @@
 
 ### 4.4 Post Detail (In-Memory)
 - **엔드포인트**: `GET /posts/{no}`
+- [x] 구현
+    - [x] `PostController`에 작성폼 GET 매핑 추가
+    - [x] `post_new_form.html` 템플릿 생성 (삼성 스타일 적용)
+    - [x] `posts.html` 목록 페이지에 "새 글" 버튼 추가
+- [x] 검증
+    - [x] 빌드 및 서버 실행
+    - [x] 각 버튼(등록, 취소) 및 필수 입력 동작 확인
+- [x] 완료
+    - [x] Git 커밋 및 푸시
+- **엔드포인트**: `GET /posts/new`
 - **컨트롤러**: `vibeapp.PostController`
-- **뷰 템플릿**: `src/main/resources/templates/post_detail.html`
-- **항목**: 번호, 제목, 내용, 생성일, 수정일, 조회수
+- **뷰 템플릿**: `src/main/resources/templates/post_new_form.html`
+- **항목**: 제목, 내용 (입력폼)
 
 ## 5. 주요 의존성
 - `spring-boot-starter-web`: 웹 애플리케이션 개발을 위한 스타터
