@@ -24,4 +24,10 @@ public class PostRepository {
     public List<Post> findAll() {
         return new ArrayList<>(posts);
     }
+
+    public java.util.Optional<Post> findByNo(Long no) {
+        return posts.stream()
+                .filter(post -> post.getNo().equals(no))
+                .findFirst();
+    }
 }

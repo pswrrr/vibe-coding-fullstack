@@ -121,7 +121,8 @@
                         <tr th:each="post : ${posts}">
                             <td class="font-medium text-text-sub" th:text="${post.no}">1</td>
                             <td>
-                                <a href="#" class="font-bold hover:text-accent transition-colors block py-1"
+                                <a th:href="@{/posts/{no}(no=${post.no})}"
+                                    class="font-bold hover:text-accent transition-colors block py-1"
                                     th:text="${post.title}">게시글 제목입니다.</a>
                             </td>
                             <td class="text-sm text-text-sub"

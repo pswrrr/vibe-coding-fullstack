@@ -14,4 +14,15 @@ public class PostService {
     public List<Post> getAllPosts() {
         return postRepository.findAll();
     }
+
+    public Post getPostByNo(Long no) {
+        Post post = postRepository.findByNo(no)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다. No: " + no));
+
+        // 조회수 증가
+        post.setViews(post.getViews() + 1);
+        post.setUpdatedAt(java.time.LocalDateTime.now());
+
+        return post;
+    }
 }

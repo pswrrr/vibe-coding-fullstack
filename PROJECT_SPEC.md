@@ -43,6 +43,12 @@
 - **뷰 템플릿**: `src/main/resources/templates/posts.html`
 - **항목**: 번호, 제목, 생성일, 조회수
 
+### 4.4 Post Detail (In-Memory)
+- **엔드포인트**: `GET /posts/{no}`
+- **컨트롤러**: `vibeapp.PostController`
+- **뷰 템플릿**: `src/main/resources/templates/post_detail.html`
+- **항목**: 번호, 제목, 내용, 생성일, 수정일, 조회수
+
 ## 5. 주요 의존성
 - `spring-boot-starter-web`: 웹 애플리케이션 개발을 위한 스타터
 - `spring-boot-starter-thymeleaf`: Thymeleaf 템플릿 엔진 스타터
