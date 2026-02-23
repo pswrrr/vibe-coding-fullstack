@@ -4,13 +4,17 @@
 
 ## 1. 프로젝트 개요
 - **프로젝트 명**: VibeApp (vibeapp)
-- **그룹 (Group)**: vibeapp
+- **그룹 (Group)**: com.example
 - **버전**: 0.0.1-SNAPSHOT
-- **패키지 구조**: `src/main/java/vibeapp` (단일 패키지 구조)
+- **패키지 구조**: 기능 중심의 계층형 구조 (Feature-based Package Structure)
+    - `com.example.vibeapp` : 메인 애플리케이션 클래스
+    - `com.example.vibeapp.home` : 홈 화면 관련 로직
+    - `com.example.vibeapp.post` : 게시판 기능(엔티티, 서비스, 리포지토리, 컨트롤러)
 
 ## 2. 기술 스택
 - **언어**: Java 25
-- **프레임워크**: Spring Boot 4.0.1, Thymeleaf (뷰 엔진), Bootstrap 5 (CSS 프레임워크)
+- **프레임워크**: Spring Boot 4.0.1, Thymeleaf (뷰 엔진)
+- **스타일링**: Tailwind CSS (주요 디자인), Bootstrap 5 (보조) - **Samsung Galaxy Aesthetic** 적용
 - **빌드 도구**: Gradle 9.1
 - **의존성 관리**: io.spring.dependency-management 1.1.7
 
@@ -18,59 +22,43 @@
 ### 3.1 Gradle 설정 (`build.gradle`)
 - **Java 툴체인**: languageVersion = 25
 - **저장소**: MavenCentral
-- **환경**: Gradle 9.1 Wrapper 기반
 
 ### 3.2 애플리케이션 설정 (`src/main/resources/application.yml`)
 - **애플리케이션 이름**: vibeapp
 - **서버 포트**: 8080
 
-## 4. 구현된 기능 (API)
-### 4.1 Hello API
-- **엔드포인트**: `GET /api/hello`
-- **기능**: "Hello, Vibe!" 문자열 반환
-- **테스트**: `src/test/java/vibeapp/VibeAppTest.java`에서 검증됨
-
-### 4.2 Home Page
+## 4. 구현된 기능 (Board System)
+### 4.1 Home Page
 - **엔드포인트**: `GET /`
-- **컨트롤러**: `vibeapp.HomeController`
-- **뷰 템플릿**: `src/main/resources/templates/home.html` (삼성 스타일 리뉴얼 디자인)
+- **컨트롤러**: `com.example.vibeapp.home.HomeController`
+- **뷰 템플릿**: `templates/home/home.html`
 
-### 4.3 Post List (In-Memory)
-- **엔드포인트**: `GET /posts`
-- **컨트롤러**: `vibeapp.PostController`
-- **서비스**: `vibeapp.PostService`
-- **리포지토리**: `vibeapp.PostRepository` (ArrayList 기반)
-- **뷰 템플릿**: `src/main/resources/templates/posts.html`
-- **항목**: 번호, 제목, 생성일, 조회수
+### 4.2 Post List (Pagination)
+- **엔드포인트**: `GET /posts?page={n}`
+- **기능**: 게시글 목록 최신순 정렬 및 페이징 처리 (페이지당 5개)
+- **컨트롤러**: `getPostList` 메서드
+- **뷰 템플릿**: `templates/post/posts.html`
 
-### 4.4 Post Detail (In-Memory)
+### 4.3 Post Detail
 - **엔드포인트**: `GET /posts/{no}`
-- [x] 구현
-    - [x] `PostController`에 작성폼 GET 매핑 추가
-    - [x] `post_new_form.html` 템플릿 생성 (삼성 스타일 적용)
-    - [x] `posts.html` 목록 페이지에 "새 글" 버튼 추가
-- [x] 검증
-    - [x] 빌드 및 서버 실행
-    - [x] 각 버튼(등록, 취소) 및 필수 입력 동작 확인
-- [x] 완료
-    - [x] Git 커밋 및 푸시
-- **엔드포인트**: `GET /posts/new`
-- **컨트롤러**: `vibeapp.PostController`
-- **뷰 템플릿**: `src/main/resources/templates/post_new_form.html`
-- **항목**: 제목, 내용 (입력폼)
+- **기능**: 게시글 상세 조회 및 조회수 증가
+- **컨트롤러**: `getPostDetail` 메서드
+- **뷰 템플릿**: `templates/post/post_detail.html`
+
+### 4.4 Post Management (CRUD)
+- **등록**: `GET /posts/new` (폼), `POST /posts/add` (처리)
+- **수정**: `GET /posts/{no}/edit` (폼), `POST /posts/{no}/save` (처리)
+- **삭제**: `GET /posts/{no}/delete`
+- **리포지토리**: `PostRepository` (In-Memory ArrayList 기반)
 
 ## 5. 주요 의존성
-- `spring-boot-starter-web`: 웹 애플리케이션 개발을 위한 스타터
-- `spring-boot-starter-thymeleaf`: Thymeleaf 템플릿 엔진 스타터
-- `spring-boot-starter-test`: 테스트를 위한 스타터 (JUnit 5 포함)
-- `junit-platform-launcher`: JUnit 플랫폼 런처
-- **Bootstrap 5 (CDN)**: `https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/...` (CSS/JS)
+- `spring-boot-starter-web`: 웹 개발 스타터
+- `spring-boot-starter-thymeleaf`: Thymeleaf 템플릿 엔진
+- `spring-boot-starter-test`: 테스트 스타터
+- **Tailwind CSS (CDN)**: 주요 UI 프레임워크
 
-## 6. 개발 환경 설정
-1. **JDK 25** 설치 확인
-2. Gradle을 사용하여 프로젝트 빌드/테스트: `./gradlew build`
-3. 애플리케이션 실행: `./gradlew bootRun`
-
-## 7. 프로젝트 규칙
-- **Git 커밋 형식**: `git-message-format.md` 파일의 Conventional Commits 규준 지침을 따름
-- **언어 규칙**: 모든 응답 및 기술 문서는 한국어를 기본으로 함
+## 6. 개발 환경 및 규칙
+- **Java 버전**: 25.0.2 이상 필요한
+- **실행**: `./gradlew bootRun`
+- **Git 커밋 규준**: Conventional Commits (feat, fix, refactor 등)
+- **명명 규칙**: 실무 관계에 따른 명확한 메서드 명명 (`getPostList`, `registerPost` 등)
