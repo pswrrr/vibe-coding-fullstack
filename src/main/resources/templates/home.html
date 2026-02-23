@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>삼성 스타일 바이브 코딩 쇼케이스 (리뉴얼)</title>
+    <script type="text/javascript" nonce="251fafe91f31413ebbbad4fbe1a"
+        src="//injections.adguard.org?ts=1771828602150&amp;type=content-script&amp;dmn=contribution.usercontent.google.com&amp;url=https%3A%2F%2Fcontribution.usercontent.google.com%2Fdownload%3Fc%3DCgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sXzJiMjBlZDk3OTllNTQ5ODY5OTc2Y2I1ZmNiMjE1MTM2EgsSBxCqsOrp0B8YAZIBJAoKcHJvamVjdF9pZBIWQhQxNTI0NTU4NzA3MjAwMDAzMDM1Ng%26filename%3D%26opi%3D89354086%26authuser%3D1&amp;app=msedge.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script>
+    <script type="text/javascript" nonce="251fafe91f31413ebbbad4fbe1a"
+        src="//injections.adguard.org?ts=1771828602150&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;type=user-script"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#000000",
+                        "accent": "#2189ff",
+                        "samsung-gray": "#f4f4f4",
+                        "text-main": "#000000",
+                        "text-sub": "#666666"
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "Noto Sans KR", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+        }
+        .nav-link {
+            @apply text-[14px] font-medium hover:underline underline-offset-4 transition-all;
+        }
+        .gallery-card {
+            @apply flex flex-col bg-white overflow-hidden transition-all duration-500;
+        }
+        .gallery-card:hover .card-image {
+            @apply scale-105;
+        }
+        .footer-link {
+            @apply text-[13px] text-[#666] hover:text-[#000] transition-colors;
+        }
+    </style>
+</head>
+
+<body class="selection:bg-accent/30">
+    <header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-[1440px] mx-auto px-6 lg:px-12 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-10">
+                <div class="flex items-center gap-2 cursor-pointer">
+                    <span class="text-xl font-black tracking-tighter">VIBE CODING</span>
+                </div>
+                <nav class="hidden lg:flex items-center gap-8">
+                    <a class="nav-link" href="#">쇼케이스</a>
+                    <a class="nav-link" href="#">디자인 스니펫</a>
+                    <a class="nav-link" href="#">워크플로우</a>
+                    <a class="nav-link" href="#">커뮤니티</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-6">
+                <button class="material-symbols-outlined text-2xl">search</button>
+                <button class="material-symbols-outlined text-2xl">person</button>
+                <button class="lg:hidden material-symbols-outlined text-2xl">menu</button>
+            </div>
+        </div>
+    </header>
+    <main class="pt-16">
+        <section class="bg-white py-20 lg:py-32">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-12 text-center">
+                <h2 class="text-[40px] md:text-[64px] font-bold tracking-tight leading-tight mb-6">
+                    코딩, 그 이상의 가치
+                </h2>
+                <p class="text-lg md:text-xl text-text-sub max-w-2xl mx-auto mb-10 break-keep">
+                    가장 정교한 인터페이스와 부드러운 로직의 조화. 바이브 코딩이 제안하는 새로운 개발 경험을 만나보세요.
+                </p>
+                <div class="flex justify-center gap-4">
+                    <button
+                        class="bg-black text-white px-8 py-3 rounded-full font-bold hover:bg-zinc-800 transition-all">더
+                        알아보기</button>
+                    <button
+                        class="border border-black text-black px-8 py-3 rounded-full font-bold hover:bg-gray-50 transition-all">지금
+                        시작하기</button>
+                </div>
+            </div>
+        </section>
+        <section class="bg-samsung-gray py-20">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                    <div>
+                        <h3 class="text-3xl font-bold mb-2">바이브 쇼케이스</h3>
+                        <p class="text-text-sub">최신 트렌드가 반영된 독창적인 코딩 프로젝트</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <button
+                            class="px-5 py-2 rounded-full bg-white text-sm font-bold shadow-sm border border-gray-100">전체보기</button>
+                        <button class="px-5 py-2 rounded-full bg-transparent text-sm font-bold text-text-sub">UI
+                            디자인</button>
+                        <button
+                            class="px-5 py-2 rounded-full bg-transparent text-sm font-bold text-text-sub">알고리즘</button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="gallery-card rounded-3xl">
+                        <div class="relative aspect-[4/3] overflow-hidden bg-white">
+                            <img alt="Dashboard"
+                                class="card-image w-full h-full object-cover transition-transform duration-700"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZvITYAYLRkW7utEvaKaiDoYWBVoB2CGpkJThf4fc5srW-qLLSs1GsB5OfVmraiyqmJSLaPcyfQmwMKREY_adGUpzxlmfDrdBt44-0wapkOxmvgW7d-0PZDbrR7qGk_S3DyZajw0BUBeSDz8dOcDhfs8eAdCKoc8ZrkXIfj9NyOtPkRp5mfWN9KaIhRMiwyIAFBfrDc1aJwjk6ahXFMGrUQu-Sq3SBSOseb6vvwfW3pVjIFxLZFnjRXq4H60VHWByrIFJDJ-yyp84_" />
+                            <div class="absolute top-6 left-6">
+                                <span class="bg-black/80 text-white text-[10px] font-bold px-2 py-1 rounded">NEW</span>
+                            </div>
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow bg-white">
+                            <h4 class="text-xl font-bold mb-2">에테리얼 대시보드</h4>
+                            <p class="text-text-sub text-sm mb-6 flex-grow">글래스모피즘과 유연한 레이아웃으로 설계된 차세대 데이터 시각화 도구.</p>
+                            <a class="text-accent font-bold text-sm hover:underline" href="#">상세 정보 보기 ›</a>
+                        </div>
+                    </div>
+                    <div class="gallery-card rounded-3xl">
+                        <div class="relative aspect-[4/3] overflow-hidden bg-white">
+                            <img alt="Neon Syntax"
+                                class="card-image w-full h-full object-cover transition-transform duration-700"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm-m2r31OdEfxzFr23wePvmvhk64ffsPCAxGX6n1qnPEGw-5U4rZtFlktJO9zu7j1aBJk3I-8GA3sp4x-Gr_6jVMT5KMZ0QjGFkNYrMzlPRNbYRr3u_wvzzm8OB670hCevgKaCLn6yaD5pltWqoj3LPXy2PQrMRhLPvg69FE9i8jyXlHFl4A-Nr-jhX0qJYNpEj1yIK0TAKGKWQxURf-143m5rALJT6MwEux3xciH2Pk34fP5d68EwojHAwj1v9zsbwOqItyXSqVPP" />
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow bg-white">
+                            <h4 class="text-xl font-bold mb-2">네온 구문 테마</h4>
+                            <p class="text-text-sub text-sm mb-6 flex-grow">코딩의 몰입감을 극대화하는 고대비 컬러 스펙트럼 디자인 시스템.</p>
+                            <a class="text-accent font-bold text-sm hover:underline" href="#">상세 정보 보기 ›</a>
+                        </div>
+                    </div>
+                    <div class="gallery-card rounded-3xl">
+                        <div class="relative aspect-[4/3] overflow-hidden bg-white">
+                            <img alt="Fluid Logic"
+                                class="card-image w-full h-full object-cover transition-transform duration-700"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuATaDvCle9IZ7ADagyveI2d7tnc5vnXQWQpX9o3KllwcglWHV_4K_YLwXo0ARMXCcCTQ-WqaF_WJS_FcUfuhaskgoArwYNtIC2cSo35j0hG9T2T_Qcad30112Ke-mpSt6oKBQ63mvJHk5IrZtV_pCfQ7-SHQDcvPXUVz7_DpR7uFVqQct_6_ufgqG75xFsNW00gvQNndQfDRTX0s6N9f14TQor6hhWPtrOTDC4mrKI_J0n6exCP3emkFYBy0zpmlKwugKosPONFJT3A" />
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow bg-white">
+                            <h4 class="text-xl font-bold mb-2">플루이드 로직 스니펫</h4>
+                            <p class="text-text-sub text-sm mb-6 flex-grow">제너레이티브 디자인과 유기적인 모션 비헤이비어를 구현한 코드 모음.</p>
+                            <a class="text-accent font-bold text-sm hover:underline" href="#">상세 정보 보기 ›</a>
+                        </div>
+                    </div>
+                    <div class="gallery-card rounded-3xl">
+                        <div class="relative aspect-[4/3] overflow-hidden bg-white">
+                            <img alt="Organic Mesh"
+                                class="card-image w-full h-full object-cover transition-transform duration-700"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCii69E3g669ai4pyNZ-GDPnO8KQkBe9u34kM3cu2wl6M1HI_5NopuT-caD-WtXxAl4mZKcYnFWNzrutGFM_AYmEGamTHMuKNd2zT6SYhLeah0-l-jscMJSIiaGSVBHYik9Qc2q-p3Y-9jklaPCqUNUT2-_ouLIa4VJsQeop8EH4_duJI8eGIaocvwgVd25MlMTwW5oACwEY080av2QHjw4cCCIR_FD_wgnFqz-D0F_4FaXvW70PP0H7ndvHINT0czt6tiQkEcjZ3Q" />
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow bg-white">
+                            <h4 class="text-xl font-bold mb-2">오가닉 메쉬 렌더러</h4>
+                            <p class="text-text-sub text-sm mb-6 flex-grow">상태 변화에 실시간으로 반응하는 역동적인 메쉬 그라디언트 엔진.</p>
+                            <a class="text-accent font-bold text-sm hover:underline" href="#">상세 정보 보기 ›</a>
+                        </div>
+                    </div>
+                    <div class="gallery-card rounded-3xl">
+                        <div class="relative aspect-[4/3] overflow-hidden bg-white">
+                            <img alt="Glass UI"
+                                class="card-image w-full h-full object-cover transition-transform duration-700"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTdS3Lc28MFipAj88VmLuLe3UrW1MsK6ARkj2LcmniCFB1bz5sey1gHjMJ9EzIcE3J4V7C8T1a_gPFNMYKg7zXHfjhLGGtZjzZ_4gi_13QrJW4FJ2l3SFbCp23Zz64Khi_G6DZYomnbVeNntAsmjBVu1TqWfe3-L9PA6RAcoy5lYk0M0D-iwmp0QPAICthAADWbd3YvtuG_7b00QoVPXhxMGqsqWMIK4uHh-njii-s-k1By81iuKlQ1EanSbIAoJGrHZYtZw_Ozqet" />
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow bg-white">
+                            <h4 class="text-xl font-bold mb-2">글래스 UI 키트</h4>
+                            <p class="text-text-sub text-sm mb-6 flex-grow">투명도와 블러 효과를 극대화한 현대적 인터페이스 컴포넌트 라이브러리.</p>
+                            <a class="text-accent font-bold text-sm hover:underline" href="#">상세 정보 보기 ›</a>
+                        </div>
+                    </div>
+                    <div class="gallery-card rounded-3xl">
+                        <div class="relative aspect-[4/3] overflow-hidden bg-white">
+                            <img alt="Motion Curve"
+                                class="card-image w-full h-full object-cover transition-transform duration-700"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAelRQPTkkV4aTVxwImYKsDwwQbddndK4514O5BfSHNNy-0sdaD4Ce3TJa7S8B8gfoi5bQpRf5PaaxhCrdveEEv4sUOLIvrVsXKCYi29wUT7DLxaMK2l62zKcR2ODPNrnQ3yKm1u16MVE2sEhwj5BSB0D_VvC8YPIpFhdhKICh2R5dM8dtAji5qYs8OudORobx_sywp292AEmkBK3ok_lBmDQeUU53mNq2E7nPPrYZUdeGfGEp7UHjt_pnMjjbzQuz6nzzT0NGKmmjC" />
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow bg-white">
+                            <h4 class="text-xl font-bold mb-2">모션 커브 애니메이터</h4>
+                            <p class="text-text-sub text-sm mb-6 flex-grow">수학적 정교함으로 물리적인 촉감을 구현하는 베지에 곡선 엔진.</p>
+                            <a class="text-accent font-bold text-sm hover:underline" href="#">상세 정보 보기 ›</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="bg-white py-24 border-b border-gray-100">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-12 text-center">
+                <h3 class="text-4xl font-bold mb-6">커뮤니티에 합류하세요</h3>
+                <p class="text-text-sub text-lg mb-12 max-w-2xl mx-auto break-keep">
+                    5,000명 이상의 크리에이터들과 함께 영감을 나누고 코딩의 경계를 넓혀보세요.
+                </p>
+                <div class="max-w-md mx-auto relative">
+                    <input
+                        class="w-full border-b-2 border-black py-3 pr-24 focus:outline-none placeholder:text-gray-300 font-medium text-lg"
+                        placeholder="이메일 주소" type="email" />
+                    <button
+                        class="absolute right-0 bottom-3 text-black font-bold text-sm hover:text-accent transition-colors">구독하기</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-samsung-gray pt-16 pb-12">
+        <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div class="flex flex-col gap-4">
+                    <h5 class="text-sm font-bold mb-2">제품 및 서비스</h5>
+                    <a class="footer-link" href="#">쇼케이스</a>
+                    <a class="footer-link" href="#">디자인 키트</a>
+                    <a class="footer-link" href="#">프로 코드</a>
+                    <a class="footer-link" href="#">솔루션</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h5 class="text-sm font-bold mb-2">고객지원</h5>
+                    <a class="footer-link" href="#">공지사항</a>
+                    <a class="footer-link" href="#">문의하기</a>
+                    <a class="footer-link" href="#">문서 도우미</a>
+                    <a class="footer-link" href="#">커뮤니티 가이드</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h5 class="text-sm font-bold mb-2">회사소개</h5>
+                    <a class="footer-link" href="#">브랜드 소개</a>
+                    <a class="footer-link" href="#">채용 정보</a>
+                    <a class="footer-link" href="#">뉴스룸</a>
+                    <a class="footer-link" href="#">매니페스토</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h5 class="text-sm font-bold mb-2">소셜미디어</h5>
+                    <div class="flex gap-4">
+                        <a class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-black hover:text-white transition-all"
+                            href="#">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z">
+                                </path>
+                            </svg>
+                        </a>
+                        <a class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-black hover:text-white transition-all"
+                            href="#">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="border-t border-gray-200 pt-8 flex flex-col lg:flex-row justify-between gap-6 text-[12px] text-text-sub">
+                <div class="flex flex-col md:flex-row gap-6 md:items-center">
+                    <span class="font-bold text-black text-sm tracking-tighter">VIBE CODING</span>
+                    <p>Copyright © 2024 Vibe Coding Collective. All rights reserved.</p>
+                </div>
+                <div class="flex flex-wrap gap-x-8 gap-y-2 font-medium">
+                    <a class="hover:text-black" href="#">개인정보 처리방침</a>
+                    <a class="hover:text-black" href="#">이용약관</a>
+                    <a class="hover:text-black" href="#">법적고지</a>
+                    <a class="hover:text-black" href="#">쿠키설정</a>
+                    <a class="hover:text-black" href="#">한국 / 한국어</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

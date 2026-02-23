@@ -1,0 +1,20 @@
+# AI Collaboration Rules for VibeApp
+
+## 1. Language Preference
+- **All responses and documentation must be written in Korean.**
+- 한국어 사용을 원칙으로 하며, 기술적인 용어는 관례에 따라 영문을 병용할 수 있습니다.
+
+## 2. Technical Standards
+- **Java Version**: Java 25
+- **Spring Boot**: 4.0.1
+- **Gradle**: 9.1
+- **Encoding**: UTF-8 (UTF-8 encoding must be explicitly configured in `build.gradle`)
+
+## 3. Project Structure
+- Single package structure: `src/main/java/vibeapp` (Avoid creating sub-packages unless explicitly requested).
+- References: Refer to `PROJECT_SPEC.md` for the latest project specification.
+
+## 4. Development Workflow
+- Always verify build and tests after making changes using `./gradlew build`.
+- Maintain `PROJECT_SPEC.md` and `task.md` to reflect the current state of the project.
+- Use `task_boundary` to communicate progress clearly during complex tasks.
