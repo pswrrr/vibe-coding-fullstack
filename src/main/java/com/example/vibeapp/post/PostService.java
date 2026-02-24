@@ -13,28 +13,15 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
-    private List<Post> getAllPosts() {
-        return postRepository.findAll().stream()
-                .sorted((p1, p2) -> p2.getCreatedAt().compareTo(p1.getCreatedAt()))
-                .toList();
-    }
-
     public List<PostListDto> getPostsByPage(int page, int size) {
-        List<Post> allPosts = getAllPosts();
-        int start = (page - 1) * size;
-        int end = Math.min(start + size, allPosts.size());
-
-        if (start > allPosts.size()) {
-            return Collections.emptyList();
-        }
-
-        return allPosts.subList(start, end).stream()
+        int offset = (page - 1) * size;
+        return postRepository.findAllWithPaging(offset, size).stream()
                 .map(PostListDto::from)
                 .toList();
     }
 
     public int getTotalPages(int size) {
-        int totalPosts = postRepository.findAll().size();
+        int totalPosts = postRepository.count();
         return (int) Math.ceil((double) totalPosts / size);
     }
 
@@ -65,6 +52,7 @@ public class PostService {
         post.setTitle(updateDto.title());
         post.setContent(updateDto.content());
         post.setUpdatedAt(LocalDateTime.now());
+        postRepository.update(post);
     }
 
     public void deletePost(Long no) {

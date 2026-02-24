@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.vibeapp.post.PostRepository">
+
+    <select id="findAll" resultType="Post">
+        SELECT * FROM POSTS ORDER BY CREATED_AT DESC
+    </select>
+
+    <select id="findByNo" resultType="Post">
+        SELECT * FROM POSTS WHERE NO = #{no}
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="no">
+        INSERT INTO POSTS (TITLE, CONTENT, VIEWS, CREATED_AT, UPDATED_AT)
+        VALUES (#{title}, #{content}, #{views}, #{createdAt}, #{updatedAt})
+    </insert>
+
+    <update id="update">
+        UPDATE POSTS 
+        SET TITLE = #{title}, 
+            CONTENT = #{content}, 
+            VIEWS = #{views}, 
+            UPDATED_AT = #{updatedAt}
+        WHERE NO = #{no}
+    </update>
+
+    <delete id="deleteByNo">
+        DELETE FROM POSTS WHERE NO = #{no}
+    </delete>
+
+    <select id="count" resultType="int">
+        SELECT COUNT(*) FROM POSTS
+    </select>
+
+    <select id="findAllWithPaging" resultType="Post">
+        SELECT * FROM POSTS 
+        ORDER BY CREATED_AT DESC 
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+</mapper>
