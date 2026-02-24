@@ -1,44 +1,34 @@
 package com.example.vibeapp.post;
 
 import org.springframework.stereotype.Repository;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
 public class PostRepository {
-    private final List<Post> posts = new ArrayList<>();
-    private Long nextNo = 11L;
+    private final PostMapper postMapper;
 
-    public PostRepository() {
-        // Initialize with 10 dummy data items
-        for (long i = 1; i <= 10; i++) {
-            posts.add(new Post(
-                    i,
-                    "바이브 코딩 게시글 제목 " + i,
-                    "이것은 " + i + "번째 게시글의 상세 내용입니다.",
-                    LocalDateTime.now().minusDays(10 - i),
-                    (int) (Math.random() * 100)));
-        }
+    public PostRepository(PostMapper postMapper) {
+        this.postMapper = postMapper;
     }
 
     public List<Post> findAll() {
-        return new ArrayList<>(posts);
+        return postMapper.findAll();
     }
 
     public Optional<Post> findByNo(Long no) {
-        return posts.stream()
-                .filter(post -> post.getNo().equals(no))
-                .findFirst();
+        return postMapper.findByNo(no);
     }
 
     public void save(Post post) {
-        post.setNo(nextNo++);
-        posts.add(post);
+        postMapper.save(post);
     }
 
     public void deleteByNo(Long no) {
-        posts.removeIf(post -> post.getNo().equals(no));
+        postMapper.deleteByNo(no);
+    }
+
+    public void update(Post post) {
+        postMapper.update(post);
     }
 }

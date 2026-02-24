@@ -18,3 +18,4 @@
 - Always verify build and tests after making changes using `./gradlew build`.
 - Maintain `PROJECT_SPEC.md` and `task.md` to reflect the current state of the project.
 - Use `task_boundary` to communicate progress clearly during complex tasks.
+- **Git Operations**: After completing a logical set of changes or when requested, always perform `git add .`, `git commit -m "[message]"`, and `git push` to maintain the remote repository's state.
