@@ -88,42 +88,29 @@
                 <p class="text-text-sub font-medium">작성된 내용을 수정하고 업데이트하세요.</p>
             </header>
 
-            <form th:action="@{/posts/{no}/save(no=${post.no})}" method="post" class="space-y-10">
+            <form th:action="@{/posts/{no}/save(no=${no})}" th:object="${postUpdateDto}" method="post"
+                class="space-y-10">
                 <div class="grid grid-cols-2 gap-10">
                     <div>
                         <label class="input-label">글 번호</label>
-                        <input class="input-field" th:value="${post.no}" readonly type="text" />
-                    </div>
-                    <div>
-                        <label class="input-label">조회수</label>
-                        <input class="input-field" th:value="${post.views}" readonly type="text" />
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-10">
-                    <div>
-                        <label class="input-label">생성일</label>
-                        <input class="input-field" th:value="${#temporals.format(post.createdAt, 'yyyy-MM-dd')}"
-                            readonly type="text" />
-                    </div>
-                    <div>
-                        <label class="input-label">수정일</label>
-                        <input class="input-field"
-                            th:value="${post.updatedAt != null ? #temporals.format(post.updatedAt, 'yyyy-MM-dd') : ''}"
-                            readonly type="text" />
+                        <input class="input-field" th:value="${no}" readonly type="text" />
                     </div>
                 </div>
 
                 <div>
                     <label class="input-label" for="title">제목</label>
-                    <input class="input-field font-bold text-xl" id="title" name="title" th:value="${post.title}"
-                        placeholder="제목을 입력하세요" required type="text" />
+                    <input class="input-field font-bold text-xl" th:field="*{title}" placeholder="제목을 입력하세요" required
+                        type="text" />
+                    <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-red-500 text-xs mt-1">에러
+                        메시지</p>
                 </div>
 
                 <div>
                     <label class="input-label" for="content">내용</label>
-                    <textarea class="input-field min-h-[300px] resize-none" id="content" name="content"
-                        th:text="${post.content}" placeholder="내용을 입력하세요" required></textarea>
+                    <textarea class="input-field min-h-[300px] resize-none" th:field="*{content}"
+                        placeholder="내용을 입력하세요" required></textarea>
+                    <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="text-red-500 text-xs mt-1">
+                        에러 메시지</p>
                 </div>
 
                 <div class="pt-10 flex gap-4">
@@ -131,7 +118,7 @@
                         class="flex-1 bg-black text-white py-4 rounded-full font-bold hover:bg-stone-800 transition-all">
                         저장하기
                     </button>
-                    <button type="button" th:onclick="|location.href='/posts/' + ${post.no}|"
+                    <button type="button" th:onclick="|location.href='/posts/' + ${no}|"
                         class="flex-1 border border-black text-black py-4 rounded-full font-bold hover:bg-stone-50 transition-all">
                         취소
                     </button>

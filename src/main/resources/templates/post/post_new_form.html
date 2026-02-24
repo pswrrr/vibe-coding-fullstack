@@ -85,15 +85,19 @@
                 <p class="text-text-sub font-medium">당신의 새로운 아이디어를 바이브 코딩 커뮤니티에 공유해 보세요.</p>
             </header>
 
-            <form action="/posts/add" method="post" class="space-y-10">
+            <form th:action="@{/posts/add}" th:object="${postCreateDto}" method="post" class="space-y-10">
                 <div>
                     <label class="input-label" for="title">제목</label>
-                    <input class="input-field" id="title" name="title" placeholder="제목을 입력하세요" required type="text" />
+                    <input class="input-field" th:field="*{title}" placeholder="제목을 입력하세요" required type="text" />
+                    <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-red-500 text-xs mt-1">에러
+                        메시지</p>
                 </div>
                 <div>
                     <label class="input-label" for="content">내용</label>
-                    <textarea class="input-field min-h-[300px] resize-none" id="content" name="content"
+                    <textarea class="input-field min-h-[300px] resize-none" th:field="*{content}"
                         placeholder="내용을 입력하세요" required></textarea>
+                    <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="text-red-500 text-xs mt-1">
+                        에러 메시지</p>
                 </div>
 
                 <div class="pt-10 flex gap-4">
