@@ -1,14 +1,35 @@
 package com.example.vibeapp.post;
 
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+@Entity
+@Table(name = "POSTS")
 public class Post {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "NO")
     private Long no;
+
+    @Column(nullable = false, length = 200)
     private String title;
+
+    @Column(nullable = false, columnDefinition = "CLOB")
     private String content;
+
+    @Column(name = "CREATED_AT", nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
+    @Column(name = "UPDATED_AT")
     private LocalDateTime updatedAt;
-    private Integer views;
+
+    @Column(nullable = false)
+    private Integer views = 0;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PostTag> tags = new ArrayList<>();
 
     public Post() {
     }
@@ -20,6 +41,12 @@ public class Post {
         this.createdAt = createdAt;
         this.updatedAt = createdAt;
         this.views = views;
+    }
+
+    // 연관관계 편의 메서드
+    public void addTag(PostTag tag) {
+        tags.add(tag);
+        tag.setPost(this);
     }
 
     // Getters and Setters
@@ -69,5 +96,13 @@ public class Post {
 
     public void setViews(Integer views) {
         this.views = views;
+    }
+
+    public List<PostTag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<PostTag> tags) {
+        this.tags = tags;
     }
 }

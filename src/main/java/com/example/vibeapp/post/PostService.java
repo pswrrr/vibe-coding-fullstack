@@ -79,12 +79,15 @@ public class PostService {
             return;
         }
 
+        Post post = postRepository.findByNo(postNo)
+                .orElseThrow(() -> new IllegalArgumentException("게시글을 찾을 수 없습니다. No: " + postNo));
+
         String[] tags = tagsString.split(",");
         for (String tagName : tags) {
             String trimmedTag = tagName.trim();
             if (!trimmedTag.isEmpty()) {
                 PostTag postTag = new PostTag();
-                postTag.setPostNo(postNo);
+                postTag.setPost(post); // postNo 대신 Post 엔티티 설정
                 postTag.setTagName(trimmedTag);
                 postTagRepository.save(postTag);
             }
