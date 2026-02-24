@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.time.LocalDateTime;
 import java.util.Collections;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PostService {
@@ -45,6 +46,7 @@ public class PostService {
         return PostResponseDto.from(post, tagsString);
     }
 
+    @Transactional
     public void addPost(PostCreateDto createDto) {
         Post post = createDto.toEntity();
         post.setCreatedAt(LocalDateTime.now());
@@ -57,6 +59,7 @@ public class PostService {
         saveTags(post.getNo(), createDto.tags());
     }
 
+    @Transactional
     public void updatePost(Long no, PostUpdateDto updateDto) {
         Post post = postRepository.findByNo(no)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다. No: " + no));
