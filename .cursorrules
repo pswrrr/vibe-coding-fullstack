@@ -18,4 +18,5 @@
 - Always verify build and tests after making changes using `./gradlew build`.
 - Maintain `PROJECT_SPEC.md` and `task.md` to reflect the current state of the project.
 - Use `task_boundary` to communicate progress clearly during complex tasks.
-- **Git Operations**: After completing a logical set of changes or when requested, always perform `git add .`, `git commit -m "[message]"`, and `git push` to maintain the remote repository's state. **All commit messages must be written in Korean, reflecting the specific changes made.**
+- **Git Operations**: 논리적인 작업 단위가 완료될 때마다 별도의 확인 없이 `git add .`, `git commit -m "[메시지]"`, `git push`를 수행하여 원격 저장소를 업데이트합니다. **모든 커밋 메시지는 프롬프트 내용을 반영하여 반드시 한국어로 작성합니다.**
+- **Verification Policy**: 내부 브라우저 도구(`browser_subagent`)를 이용한 시각적/수동 검증 단계는 진행하지 않습니다. 모든 확인은 빌드 및 테스트 결과로 대체합니다.
