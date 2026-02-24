@@ -31,7 +31,7 @@ public class PostService {
 
         // 조회수 증가
         post.setViews(post.getViews() + 1);
-        post.setUpdatedAt(LocalDateTime.now());
+        postRepository.update(post);
 
         return PostResponseDto.from(post);
     }
