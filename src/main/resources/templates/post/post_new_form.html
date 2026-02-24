@@ -99,6 +99,10 @@
                     <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="text-red-500 text-xs mt-1">
                         에러 메시지</p>
                 </div>
+                <div>
+                    <label class="input-label" for="tags">태그 (쉼표로 구분)</label>
+                    <input class="input-field" th:field="*{tags}" placeholder="예: 개발, 자바, 스프링" type="text" />
+                </div>
 
                 <div class="pt-10 flex gap-4">
                     <button type="submit"

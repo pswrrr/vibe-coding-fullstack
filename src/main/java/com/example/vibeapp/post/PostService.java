@@ -8,9 +8,11 @@ import java.util.Collections;
 @Service
 public class PostService {
     private final PostRepository postRepository;
+    private final PostTagRepository postTagRepository;
 
-    public PostService(PostRepository postRepository) {
+    public PostService(PostRepository postRepository, PostTagRepository postTagRepository) {
         this.postRepository = postRepository;
+        this.postTagRepository = postTagRepository;
     }
 
     public List<PostListDto> getPostsByPage(int page, int size) {
@@ -33,7 +35,14 @@ public class PostService {
         post.setViews(post.getViews() + 1);
         postRepository.update(post);
 
-        return PostResponseDto.from(post);
+        // 태그 조회
+        List<PostTag> tags = postTagRepository.findByPostNo(no);
+        String tagsString = tags.stream()
+                .map(PostTag::getTagName)
+                .reduce((a, b) -> a + ", " + b)
+                .orElse("");
+
+        return PostResponseDto.from(post, tagsString);
     }
 
     public void addPost(PostCreateDto createDto) {
@@ -43,6 +52,9 @@ public class PostService {
         post.setViews(0);
 
         postRepository.save(post);
+
+        // 태그 저장
+        saveTags(post.getNo(), createDto.tags());
     }
 
     public void updatePost(Long no, PostUpdateDto updateDto) {
@@ -53,6 +65,27 @@ public class PostService {
         post.setContent(updateDto.content());
         post.setUpdatedAt(LocalDateTime.now());
         postRepository.update(post);
+
+        // 태그 업데이트 (기존 삭제 후 신규 저장)
+        postTagRepository.deleteByPostNo(no);
+        saveTags(no, updateDto.tags());
+    }
+
+    private void saveTags(Long postNo, String tagsString) {
+        if (tagsString == null || tagsString.isBlank()) {
+            return;
+        }
+
+        String[] tags = tagsString.split(",");
+        for (String tagName : tags) {
+            String trimmedTag = tagName.trim();
+            if (!trimmedTag.isEmpty()) {
+                PostTag postTag = new PostTag();
+                postTag.setPostNo(postNo);
+                postTag.setTagName(trimmedTag);
+                postTagRepository.save(postTag);
+            }
+        }
     }
 
     public void deletePost(Long no) {

@@ -8,14 +8,16 @@ public record PostResponseDto(
         String content,
         LocalDateTime createdAt,
         LocalDateTime updatedAt,
-        Integer views) {
-    public static PostResponseDto from(Post entity) {
+        Integer views,
+        String tags) {
+    public static PostResponseDto from(Post entity, String tags) {
         return new PostResponseDto(
                 entity.getNo(),
                 entity.getTitle(),
                 entity.getContent(),
                 entity.getCreatedAt(),
                 entity.getUpdatedAt(),
-                entity.getViews());
+                entity.getViews(),
+                tags);
     }
 }

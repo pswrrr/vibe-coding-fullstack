@@ -11,4 +11,12 @@
         DELETE FROM POST_TAGS WHERE ID = #{id}
     </delete>
 
+    <select id="findByPostNo" resultType="PostTag">
+        SELECT * FROM POST_TAGS WHERE POST_NO = #{postNo}
+    </select>
+
+    <delete id="deleteByPostNo">
+        DELETE FROM POST_TAGS WHERE POST_NO = #{postNo}
+    </delete>
+
 </mapper>

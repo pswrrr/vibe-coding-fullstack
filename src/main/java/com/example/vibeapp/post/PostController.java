@@ -41,7 +41,7 @@ public class PostController {
 
     @GetMapping("/posts/new")
     public String getPostNewForm(Model model) {
-        model.addAttribute("postCreateDto", new PostCreateDto("", ""));
+        model.addAttribute("postCreateDto", new PostCreateDto("", "", ""));
         return "post/post_new_form";
     }
 
@@ -57,7 +57,7 @@ public class PostController {
     @GetMapping("/posts/{no}/edit")
     public String getPostEditForm(@PathVariable("no") Long no, Model model) {
         PostResponseDto post = postService.getPostByNo(no);
-        model.addAttribute("postUpdateDto", new PostUpdateDto(post.title(), post.content()));
+        model.addAttribute("postUpdateDto", new PostUpdateDto(post.title(), post.content(), post.tags()));
         model.addAttribute("no", no);
         return "post/post_edit_form";
     }
