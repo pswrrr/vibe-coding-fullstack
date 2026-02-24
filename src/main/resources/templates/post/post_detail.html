@@ -98,6 +98,11 @@
                 <h1 class="text-[32px] md:text-[42px] font-bold tracking-tight leading-tight mb-6"
                     th:text="${post.title}">게시글 제목이 표시되는 영역입니다.</h1>
 
+                <div class="flex flex-wrap gap-2 mb-8" th:if="${not #strings.isEmpty(post.tags)}">
+                    <span th:each="tag : ${#strings.arraySplit(post.tags, ',')}" th:text="'#' + ${#strings.trim(tag)}"
+                        class="bg-stone-100 text-accent text-[12px] font-bold px-3 py-1 rounded-full border border-stone-200">#태그</span>
+                </div>
+
                 <div class="flex flex-wrap items-center justify-between gap-4">
                     <div class="flex items-center gap-6">
                         <div class="meta-item">
